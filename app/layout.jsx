@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title:       'Shortly',
+  title: 'Shortly',
   description: 'Shorten your links.',
 };
 

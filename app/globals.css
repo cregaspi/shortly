@@ -146,7 +146,7 @@ button {
 .navbar__username {
   font-weight: 700;
   font-size: 0.9rem;
-  color: var(--gray-500);
+  color: #147a7a;
   font-family: var(--font);
 }
 

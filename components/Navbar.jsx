@@ -2,8 +2,8 @@
 // components/Navbar.js
 
 import { useState } from 'react';
-import Link         from 'next/link';
-import Image        from 'next/image';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
 

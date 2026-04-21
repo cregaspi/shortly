@@ -2,8 +2,21 @@
 // components/Hero.jsx
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 export default function Hero() {
+  const router = useRouter();
+  const { user } = useAuth();
+
+  const handleGetStarted = () => {
+    if (user) {
+      router.push('/dashboard');
+    } else {
+      router.push('/login');
+    }
+  };
+
   return (
     <section className="hero">
 
@@ -13,7 +26,7 @@ export default function Hero() {
           Build your brand&apos;s recognition and get detailed insights on how
           your links are performing.
         </p>
-        <button className="btn-cyan hero__cta">Get Started</button>
+        <button className="btn-cyan hero__cta" onClick={handleGetStarted}>Get Started</button>
       </div>
 
       <div className="hero__image">
