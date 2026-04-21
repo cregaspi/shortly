@@ -73,7 +73,7 @@ button {
   background: var(--cyan);
   color: var(--white);
   font-family: var(--font);
-  font-weight: 700;
+  font-weight: 500;
   border-radius: var(--radius-btn);
   padding: 0.75rem 2rem;
   font-size: 1rem;
@@ -111,7 +111,7 @@ button {
 }
 
 .navbar__link {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.9rem;
   color: var(--gray-500);
   background: none;
@@ -131,7 +131,7 @@ button {
   margin-left: auto;
 }
 .navbar__auth .btn-login {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.9rem;
   color: var(--gray-500);
   background: none;
@@ -142,6 +142,22 @@ button {
 }
 .navbar__auth .btn-login:hover { color: var(--gray-900); }
 .navbar__auth .btn-signup { font-size: 0.9rem; padding: 0.55rem 1.5rem; }
+
+.navbar__username {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  font-family: var(--font);
+}
+
+.navbar__username--mobile {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  font-family: var(--font);
+  display: block;
+  text-align: center;
+}
 
 .navbar__hamburger {
   display: none;
@@ -309,9 +325,9 @@ button {
   background: var(--cyan);
   color: var(--white);
   font-family: var(--font);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1rem;
-  padding: 1.1rem 2.5rem;
+  padding: 1.25rem 2.5rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -333,6 +349,79 @@ button {
   margin-right: 0.5rem;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Auth forms ────────────────────────────────────────────────────────── */
+.form-container {
+  max-width: 1110px;
+  margin: 0 auto;
+  background-color: var(--purple);
+  border-radius: var(--radius-card);
+  padding: 3.5rem 4rem;
+  background-image: url('/images/bg-shorten-desktop.svg');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: cover;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1.1rem 2rem;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  outline: none;
+  color: var(--gray-900);
+  transition: border-color 0.2s;
+}
+.form-group input::placeholder { color: var(--gray-400); }
+
+.error-message {
+  color: var(--red);
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.auth-link {
+  text-align: center;
+  color: var(--white);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.auth-link a {
+  color: var(--cyan);
+  font-weight: 700;
+}
 
 /* ── Link list ─────────────────────────────────────────────────────────── */
 .link-list {
@@ -653,6 +742,103 @@ button {
   font-weight: 700;
 }
 
+/* FAQ */
+.faq-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border: 1px solid #e8e8f0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  font-family: var(--font);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: var(--bg-light);
+}
+
+.faq-question.is-open {
+  background: var(--bg-light);
+  color: var(--cyan);
+}
+
+.faq-toggle {
+  font-size: 1.5rem;
+  color: var(--cyan);
+  transition: transform 0.3s ease;
+}
+
+.faq-question.is-open .faq-toggle {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 1.5rem;
+  background: var(--bg-light);
+  color: var(--gray-500);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  border-top: 1px solid #e8e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-contact {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: var(--bg-light);
+  border-radius: var(--radius-card);
+}
+
+.faq-contact h2 {
+  font-size: 1.5rem;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.faq-contact p {
+  color: var(--gray-500);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* FAQ Section on Dashboard */
+.faq-section {
+  /* margin-top: 4rem; */
+  padding: 2rem 1.5rem;
+  background: var(--bg-light);
+}
+
 /* ── Responsive — mobile (≤ 768px) ────────────────────────────────────── */
 @media (max-width: 768px) {
 
@@ -734,4 +920,16 @@ button {
 
   .pricing-card--featured { transform: none; }
   .pricing__grid          { grid-template-columns: 1fr; }
+
+  .form-container {
+    padding: 1.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    background-image: url('/images/bg-shorten-mobile.svg');
+    background-position: top right;
+  }
+
+  .faq-container {
+    max-width: 100%;
+  }
 }

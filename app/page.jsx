@@ -12,25 +12,40 @@ import Footer from '../components/Footer';
 
 import { shortenUrl } from '../utils/api';
 import { saveLinks, loadLinks } from '../utils/storage';
+import { useAuth } from '../context/AuthContext';
 
 export default function Home() {
 
+   
+  const { user, isLoading } = useAuth();
   const [inputUrl, setInputUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [copiedUrl, setCopiedUrl] = useState('');
-  const [links, setLinks] = useState([]);  // always [] on first render (server + client)
+  const [links, setLinks] = useState([]);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
+  // Initialize links from localStorage on mount
   useEffect(() => {
-    // Runs only in the browser, after hydration — safe to access localStorage
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLinks(loadLinks());
-  }, []); // empty deps = run once on mount
+    if (!hasInitialized && !isLoading) {
+      const allLinks = loadLinks();
+      // If user is logged in, show only their links. If not, show guest links.
+      if (user) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLinks(allLinks.filter(link => link.username === user.username));
+      } else {
+        setLinks(allLinks.filter(link => !link.username));
+      }
+      setHasInitialized(true);
+    }
+  }, [user, isLoading, hasInitialized]);
 
-  // Persist to localStorage whenever the links array changes
+  // Persist to localStorage whenever the links array changes (but only after initialization)
   useEffect(() => {
-    saveLinks(links);
-  }, [links]);
+    if (hasInitialized) {
+      saveLinks(links);
+    }
+  }, [links, hasInitialized]);
 
   const handleShorten = async () => {
     if (!inputUrl.trim()) {
@@ -48,6 +63,7 @@ export default function Home() {
         id:       Date.now(),
         original: inputUrl.trim(),
         short:    result.shortUrl,
+        username: user ? user.username : null,
       };
       setLinks(prev => [newLink, ...prev]);
       setInputUrl('');
