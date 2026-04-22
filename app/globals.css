@@ -43,6 +43,11 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+  height: 100%;
+}
+
 body {
   font-family: var(--font);
   font-size: var(--text-base);
@@ -50,10 +55,17 @@ body {
   color: var(--gray-900);
   background-color: var(--white);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* html also needs overflow-x hidden — body alone is not enough in all browsers */
 html { overflow-x: hidden; }
+
+main {
+  flex: 1;
+}
 
 img    { display: block; max-width: 100%; }
 a      { text-decoration: none; color: inherit; }
@@ -99,6 +111,7 @@ button {
   z-index: 200;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .navbar__logo { margin-right: 2.5rem; flex-shrink: 0; }
